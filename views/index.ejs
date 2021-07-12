@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="script.js" defer></script>
+    <title>Tell me your thoughts :)</title>
+</head>
+<body>
+    <h1>Tell me your thoughts :)</h1>
+    <div class="navigation-buttons">
+        <button id="about">About</button>
+        <button id="write">Tell me a thought</button>
+        <button id="read">Read a thought</button>
+        <button id="contact">Contact me</button>
+    </div>
+    <div class="main-content" data-content="about">
+        <h2>Why make this website?</h2>
+        <p>This project was made as a response to the growing number of mental health issues as a result of the COVID pandemic.</p>
+        <p>I believe that it would be nice to be able to share your thoughts out there completely anonymously, knowing you won't be judged.</p>
+    </div>
+    <div class="main-content hidden" data-content="write">
+        <h2>Tell me something on your mind right now. :)</h2>
+        <form>
+            <textarea></textarea>
+            <button id="submit">Post</button>
+        </form>
+    </div>
+    <div class="main-content hidden" data-content="read">
+        <h2>Here's a lovely thought that someone else had: </h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vel dignissim ante, nec consequat libero. Aenean risus libero, pellentesque id egestas mattis, porta sed leo. Integer sodales id nunc ut interdum. Proin imperdiet imperdiet libero, ac pellentesque augue sagittis ac. Nulla velit enim, tristique ac commodo sed, volutpat eu risus.</p>
+    </div>
+    <div class="main-content hidden" data-content="contact">
+        <h2>Want to know me better?</h2>
+        <p>Mauris ac justo ex. Nunc elementum gravida orci, vitae accumsan sem suscipit vitae. Quisque vel lorem sapien. Aliquam auctor pharetra libero eu iaculis. Maecenas finibus lobortis mauris, ut eleifend augue porta a. Cras ligula lacus, facilisis ut convallis sit amet, commodo ut nisl. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet ut nulla vitae convallis.</p>
+    </div>
+</body>
+</html>
