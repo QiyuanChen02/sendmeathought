@@ -11,11 +11,9 @@ const app = express();
 app.listen(process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => console.log("connected to database"))
 .catch(err => console.log(err));
 
 app.get("/", (req, res) => {
@@ -24,12 +22,19 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
     try {
-        const message = await Message.create(req.body);
-        console.log(message);
-        res.send("Thank you for sharing your thoughts");
+        await Message.create(req.body);
+        res.send("Thank you for sharing your thoughts.");
     } catch (err) {
         console.log(err);
-        res.send("Error saving your thoughts");
+        res.send("Error saving your thoughts. Try again later.");
     }
 });
 
+app.get("/message", async (req, res) => {
+    try {
+        const message = await Message.aggregate([{ $sample: { size: 1 } }]); //Finds a random message in the database
+        res.json(message);
+    } catch (err) {
+        console.log(err);
+    }
+});

@@ -15,7 +15,10 @@ for (const buttonEl of buttonEls){
     });
 }
 
+//This code changes the look of the screen when an input is submitted
 const form = document.querySelector("form");
+const submittedEl = document.querySelector("[data-content='has-written']");
+const writeEl = document.querySelector("[data-content='write']");
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const thought = form.thought.value;
@@ -26,7 +29,23 @@ form.addEventListener("submit", async (e) => {
             headers: { "Content-Type": "application/json" }
         });
         const data = await res.text();
+        submittedEl.firstChild.textContent = data;
+        submittedEl.className = "main-content";
+        writeEl.className = "main-content hidden";
     } catch (err) {
         console.log(err);
+    }
+});
+
+//This code fetches a message when the read a thought button is clicked
+
+//This code switches between light and dark mode
+const themeSwitcherEl = document.querySelector(".light-dark-toggle");
+themeSwitcherEl.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    if (themeSwitcherEl.firstElementChild.textContent === "Dark mode: off"){
+        themeSwitcherEl.firstElementChild.textContent = "Dark mode: on";
+    } else {
+        themeSwitcherEl.firstElementChild.textContent = "Dark mode: off";
     }
 });

@@ -9,33 +9,53 @@
     <title>Tell me your thoughts :)</title>
 </head>
 <body>
-    <h1>Tell me your thoughts :)</h1>
-    <div class="navigation-buttons">
-        <button id="about">About</button>
-        <button id="write">Tell me a thought</button>
-        <button id="read">Read a thought</button>
-        <button id="contact">Contact me</button>
-    </div>
-    <div class="main-content" data-content="about">
-        <h2>Why make this website?</h2>
-        <p>This project was made as a response to the growing number of mental health issues as a result of the COVID pandemic.</p>
-        <p>I believe that it would be nice to be able to share your thoughts out there completely anonymously, knowing you won't be judged.</p>
-    </div>
-    <div class="main-content hidden" data-content="write">
-        <!-- <form action="/" method="POST"> -->
-        <form>
-            <label for="thought"><h2>Tell me something on your mind right now. :D</h2></label>
-            <textarea id="thought" name="thought" required></textarea>
-            <button>Post</button>
-        </form>
-    </div>
-    <div class="main-content hidden" data-content="read">
-        <h2>Here's a lovely thought that someone else had: </h2>
-        <p>abcdefg</p>
-    </div>
-    <div class="main-content hidden" data-content="contact">
-        <h2>Want to know me better?</h2>
-        <p>Here are my socials</p>
-    </div>
+    <header>
+        <h1>Tell me your thoughts :)</h1>
+    </header>
+    <main>
+        <div class="navigation-buttons">
+            <button id="about">About</button>
+            <button id="write">Write a thought</button>
+            <button id="read">Read a thought</button>
+            <button id="contact">Contact me</button>
+        </div>
+        <div class="main-content" data-content="about">
+            <h2>Why make this website?</h2>
+            <p>This project was made as a response to the growing number of mental health issues as a result of the COVID pandemic.</p>
+            <p>I believe that it would be nice to be able to share your thoughts out there completely anonymously, knowing you won't be judged.</p>
+        </div>
+        <div class="main-content hidden" data-content="write">
+            <form>
+                <label for="thought"><h2>Tell me something on your mind right now. :D</h2></label>
+                <textarea id="thought" name="thought" required></textarea>
+                <button>Post</button>
+            </form>
+        </div>
+        <div class="main-content hidden" data-content="has-written">
+            <h2></h2>
+        </div>
+        <div class="main-content hidden" data-content="read">
+            <h2>Here's a lovely thought that someone else had: </h2>
+            <p>abcdefg</p>
+        </div>
+        <div class="main-content hidden" data-content="contact">
+            <h2>Want to know me better?</h2>
+            <p>Here are my socials</p>
+        </div>
+    </main>
+    <footer>
+        <div class="my-name">
+            <p>Site by Qiyuan Chen</p>
+        </div>
+        <div class="pp">
+            <p>Privacy policy</p>
+        </div>
+        <div class="tos">
+            <p>Terms of service</p>
+        </div>
+        <div class="light-dark-toggle">
+            <p>Dark mode: off</p>
+        </div>
+    </footer>
 </body>
 </html>

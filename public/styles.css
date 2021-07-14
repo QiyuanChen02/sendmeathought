@@ -1,34 +1,48 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 * {
+    --transitionTime: 2s;
     margin: 0;
     box-sizing: border-box;
     font-family: Indie Flower, cursive; 
     font-weight: bold;
+    transition: var(--transitionTime);
 }
 
 body {
-    --backgroundImage: linear-gradient(hsl(360, 90%, 90%), hsl(300, 90%, 90%));
-    --textColour: hsl(251, 50%, 0%);
-    --elementColour: hsl(200, 75%, 75%);
-    --buttonColour: hsl(36, 100%, 50%);
-    --textFieldColour: hsl(70, 50%, 50%);
+    --backgroundColor: hsl(360, 90%, 90%);
+    --textColour: hsl(0, 0%, 0%);
+    --mainColour: hsl(200, 75%, 75%);
+    --buttonColour: hsl(266, 100%, 60%);
+    --textFieldColour: hsl(60, 50%, 90%);
+    --footerTextColour: hsl(60, 50%, 90%);
 
-    --titleSize: 60px;
+    --titleSize: 50px;
     --textSize: 18px;
 
-    --transitionTime: 0.8s;
-
     min-height: 100vh;
+    margin-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    background-image: var(--backgroundImage);
+    background-color: var(--backgroundColor);
 }
 
-body > * {
+body.dark {
+    --backgroundColor: hsl(215, 60%, 8%);
+    --textColour: hsl(0, 0%, 100%);
+    --mainColour: hsl(215, 60%, 16%);
+    --buttonColour: hsl(35, 70%, 40%);
+    --textFieldColour: hsl(215, 60%, 24%);
+    --footerTextColour: hsl(0, 0%, 0%);
+}
+
+header, main {
     width: min(95vw, 750px);
+}
+
+h1, h2, p, button, textarea {
+    color: var(--textColour);
 }
 
 h1 {
@@ -37,12 +51,12 @@ h1 {
     font-size: var(--titleSize);
 }
 
-p {
+p, button {
     font-size: var(--textSize);
 }
 
 .main-content {
-    background-color: var(--elementColour);
+    background-color: var(--mainColour);
 }
 
 .navigation-buttons {
@@ -58,7 +72,6 @@ p {
     cursor: pointer;
     border: none;
     background-color: var(--buttonColour);
-    transition: width, height, var(--transitionTime);
 }
 
 .navigation-buttons button:hover {
@@ -67,7 +80,48 @@ p {
 }
 
 .main-content {
-    padding: 10px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+form textarea {
+    width: 100%;
+    height: 400px;
+    padding: calc(5px + 1%);
+    font-size: var(--textSize);
+    display: block;
+    border: none;
+    resize: none;
+    margin: auto;
+    background-color: var(--textFieldColour);
+}
+
+form button {
+    float: right;
+    margin-top: 5px;
+    width: 15%;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--buttonColour);
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100vw;
+    background-color: var(--textColour);
+}
+
+footer p {
+    margin: 5px;
+    color: var(--footerTextColour);
+    text-align: center;
+    user-select: none;
 }
 
 .hidden {
