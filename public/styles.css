@@ -1,12 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
+:root {
+    --titleSize: 50px;
+    --textSize: 17px;
+    --borderRadius: 15px;
+}
+
 * {
-    --transitionTime: 2s;
     margin: 0;
     box-sizing: border-box;
     font-family: Indie Flower, cursive; 
     font-weight: bold;
-    transition: var(--transitionTime);
+    transition: color 1s, background-color 1s, width 1s, height 1s, transform 0.3s;
 }
 
 body {
@@ -16,15 +21,13 @@ body {
     --buttonColour: hsl(266, 100%, 60%);
     --textFieldColour: hsl(60, 50%, 90%);
     --footerTextColour: hsl(60, 50%, 90%);
+    --hoverColour: hsl(0, 0%, 80%);
 
-    --titleSize: 50px;
-    --textSize: 18px;
-
-    min-height: 100vh;
-    margin-bottom: 150px;
+    padding-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: none;
     background-color: var(--backgroundColor);
 }
 
@@ -32,9 +35,10 @@ body.dark {
     --backgroundColor: hsl(215, 60%, 8%);
     --textColour: hsl(0, 0%, 100%);
     --mainColour: hsl(215, 60%, 16%);
-    --buttonColour: hsl(35, 70%, 40%);
+    --buttonColour: hsl(120, 80%, 40%);
     --textFieldColour: hsl(215, 60%, 24%);
     --footerTextColour: hsl(0, 0%, 0%);
+    --hoverColour: hsl(0, 0%, 40%);
 }
 
 header, main {
@@ -63,7 +67,7 @@ p, button {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 60px;
+    height: 80px;
 }
 
 .navigation-buttons button {
@@ -71,6 +75,7 @@ p, button {
     height: 66%;
     cursor: pointer;
     border: none;
+    border-radius: var(--borderRadius);
     background-color: var(--buttonColour);
 }
 
@@ -81,10 +86,11 @@ p, button {
 
 .main-content {
     padding: 15px;
+    border-radius: var(--borderRadius);
     overflow: hidden;
 }
 
-form textarea {
+textarea {
     width: 100%;
     height: 400px;
     padding: calc(5px + 1%);
@@ -96,14 +102,68 @@ form textarea {
     background-color: var(--textFieldColour);
 }
 
-form button {
+form button, .main-content button, .modal-body button {
     float: right;
-    margin-top: 5px;
-    width: 15%;
+    margin-top: 15px;
+    margin-left: 15px;
     height: 30px;
     cursor: pointer;
     border: none;
     background-color: var(--buttonColour);
+}
+
+.other-thought {
+    padding: calc(5px + 1%);
+    background-color: var(--textFieldColour);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    padding: 15px;
+    border: 1px solid var(--textColour);
+    z-index: 100;
+    width: min(95vw, 600px);
+    background-color: var(--mainColour);
+    border-radius: var(--borderRadius);
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--textColour);
+}
+
+.modal-header button {
+    cursor: pointer;
+    border: none;
+    padding: 0 10px;
+    background-color: var(--buttonColour);
+}
+
+.modal-body textarea {
+    margin-top: 10px;
+    height: 250px;
+}
+
+#overlay {
+    position: fixed;
+    inset: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
 footer {
@@ -112,7 +172,7 @@ footer {
     justify-content: space-around;
     position: fixed;
     bottom: 0;
-    height: 50px;
+    height: 60px;
     width: 100vw;
     background-color: var(--textColour);
 }
@@ -122,6 +182,14 @@ footer p {
     color: var(--footerTextColour);
     text-align: center;
     user-select: none;
+}
+
+.light-dark-toggle p {
+    cursor: pointer;
+}
+
+.light-dark-toggle p:hover {
+    color: var(--hoverColour);
 }
 
 .hidden {

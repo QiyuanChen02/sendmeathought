@@ -14,10 +14,10 @@
     </header>
     <main>
         <div class="navigation-buttons">
-            <button id="about">About</button>
-            <button id="write">Write a thought</button>
-            <button id="read">Read a thought</button>
-            <button id="contact">Contact me</button>
+            <button class="nav about">About</button>
+            <button class="nav write">Write a thought</button>
+            <button class="nav read">Read a thought</button>
+            <button class="nav contact">Contact me</button>
         </div>
         <div class="main-content" data-content="about">
             <h2>Why make this website?</h2>
@@ -33,15 +33,31 @@
         </div>
         <div class="main-content hidden" data-content="has-written">
             <h2></h2>
+            <button class="nav write">Write another thought</button>
         </div>
         <div class="main-content hidden" data-content="read">
             <h2>Here's a lovely thought that someone else had: </h2>
-            <p>abcdefg</p>
+            <div class="other-thought">
+            </div>
+            <button class="nav read">Read another thought</button>
+            <button data-modal-target="#modal" class="report">Report</button>
         </div>
         <div class="main-content hidden" data-content="contact">
             <h2>Want to know me better?</h2>
             <p>Here are my socials</p>
         </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div><h2>Report comment:</h2></div>
+                <button data-close-modal>&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please give a reason why you think this comment was inappropriate.</p>
+                <textarea>I think this comment is inappropriate because </textarea>
+                <button data-close-modal>Report</button>
+            </div>
+        </div>
+        <div id="overlay"></div>
     </main>
     <footer>
         <div class="my-name">

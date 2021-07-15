@@ -33,7 +33,7 @@ app.post("/", async (req, res) => {
 app.get("/message", async (req, res) => {
     try {
         const message = await Message.aggregate([{ $sample: { size: 1 } }]); //Finds a random message in the database
-        res.json(message);
+        res.json(message[0]);
     } catch (err) {
         console.log(err);
     }

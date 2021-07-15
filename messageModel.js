@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema({
-    thought: {
-        type: String,
+    thoughts: {
+        type: Array,
         required: true
     }
 }, { timestamps: true } );
