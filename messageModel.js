@@ -4,6 +4,9 @@ const messageSchema = new mongoose.Schema({
     thoughts: {
         type: Array,
         required: true
+    },
+    reports: {
+        type: String
     }
 }, { timestamps: true } );
 

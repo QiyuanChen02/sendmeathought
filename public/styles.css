@@ -9,9 +9,10 @@
 * {
     margin: 0;
     box-sizing: border-box;
+    text-decoration: none;
     font-family: Indie Flower, cursive; 
     font-weight: bold;
-    transition: color 1s, background-color 1s, width 1s, height 1s, transform 0.3s;
+    transition: width 1s, height 1s;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
     --textFieldColour: hsl(60, 50%, 90%);
     --footerTextColour: hsl(60, 50%, 90%);
     --hoverColour: hsl(0, 0%, 80%);
+    --linkColour: hsl(240, 90%, 30%);
 
     padding-bottom: 150px;
     display: flex;
@@ -33,12 +35,13 @@ body {
 
 body.dark {
     --backgroundColor: hsl(215, 60%, 8%);
-    --textColour: hsl(0, 0%, 100%);
+    --textColour: hsl(0, 0%, 95%);
     --mainColour: hsl(215, 60%, 16%);
-    --buttonColour: hsl(120, 80%, 40%);
+    --buttonColour: hsl(120, 40%, 40%);
     --textFieldColour: hsl(215, 60%, 24%);
     --footerTextColour: hsl(0, 0%, 0%);
     --hoverColour: hsl(0, 0%, 40%);
+    --linkColour: hsl(240, 90%, 70%);
 }
 
 header, main {
@@ -57,6 +60,10 @@ h1 {
 
 p, button {
     font-size: var(--textSize);
+}
+
+a {
+    color: var(--linkColour);
 }
 
 .main-content {
@@ -82,6 +89,10 @@ p, button {
 .navigation-buttons button:hover {
     width: 25%;
     height: 80%;
+}
+
+.go-back {
+    margin-right: auto;
 }
 
 .main-content {
@@ -121,7 +132,8 @@ form button, .main-content button, .modal-body button {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%);
+    display: none;
     padding: 15px;
     border: 1px solid var(--textColour);
     z-index: 100;
@@ -131,7 +143,7 @@ form button, .main-content button, .modal-body button {
 }
 
 .modal.active {
-    transform: translate(-50%, -50%) scale(1);
+    display: block;
 }
 
 .modal-header {
@@ -188,7 +200,7 @@ footer p {
     cursor: pointer;
 }
 
-.light-dark-toggle p:hover {
+footer p:hover {
     color: var(--hoverColour);
 }
 

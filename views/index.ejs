@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.svg">
-    <script src="script.js" defer></script>
-    <title>Tell me your thoughts :)</title>
-</head>
+<%- include("./partials/header") %>
 <body>
     <header>
-        <h1>Tell me your thoughts :)</h1>
+        <h1>Send me a thought :)</h1>
     </header>
     <main>
         <div class="navigation-buttons">
-            <button class="nav about">About</button>
-            <button class="nav write">Write a thought</button>
-            <button class="nav read">Read a thought</button>
-            <button class="nav contact">Contact me</button>
+            <button class="about">About</button>
+            <button class="write">Write a thought</button>
+            <button class="read">Read a thought</button>
+            <button class="contact">Contact me</button>
         </div>
         <div class="main-content" data-content="about">
             <h2>Why make this website?</h2>
-            <p>This project was made as a response to the growing number of mental health issues as a result of the COVID pandemic.</p>
-            <p>I believe that it would be nice to be able to share your thoughts out there completely anonymously, knowing you won't be judged.</p>
+            <br>
+            <p>A growing problem in our day and age is the number of peple with mental health problems, resulting from the stress and anxiety of day to day life.</p>
+            <br>
+            <p>This is made worse by the fact that most people don't want to share their feelings due to the fear of being judged.</p>
+            <br>
+            <p>Therefore this website was released as a way to pour out your thoughts in a completely anonymous way, so that you won't be judged.</p>
+            <br>
+            <p>Read the joys and struggles of people all around the world, so that you know you're never alone &#60;3</p>
         </div>
         <div class="main-content hidden" data-content="write">
             <form>
                 <label for="thought"><h2>Tell me something on your mind right now. :D</h2></label>
-                <textarea id="thought" name="thought" required></textarea>
+                <textarea id="thought" name="thought" maxlength="1000" required></textarea>
                 <button>Post</button>
             </form>
         </div>
         <div class="main-content hidden" data-content="has-written">
             <h2></h2>
-            <button class="nav write">Write another thought</button>
+            <button class="write">Write another thought</button>
         </div>
         <div class="main-content hidden" data-content="read">
             <h2>Here's a lovely thought that someone else had: </h2>
             <div class="other-thought">
             </div>
-            <button class="nav read">Read another thought</button>
+            <button class="read">Read another thought</button>
             <button data-modal-target="#modal" class="report">Report</button>
         </div>
         <div class="main-content hidden" data-content="contact">
             <h2>Want to know me better?</h2>
-            <p>Here are my socials</p>
+            <br>
+            <p>Follow me on instagram at <a href="https://www.instagram.com/qiyuanchen123/">instagram.com/qiyuanchen123</a></p>
+            <br>
+            <p>Check out my website at <a href="https://qchen.netlify.app/">qchen.netlify.app</a></p>
+            <br>
+            <p>Email me at qiyuan.chen2002@gmail.com</p>
         </div>
         <div class="modal" id="modal">
             <div class="modal-header">
@@ -52,26 +56,16 @@
                 <button data-close-modal>&times;</button>
             </div>
             <div class="modal-body">
-                <p>Please give a reason why you think this comment was inappropriate.</p>
-                <textarea>I think this comment is inappropriate because </textarea>
-                <button data-close-modal>Report</button>
+
+                <form>
+                    <label for="report"><p>Please give a reason why you think this comment was inappropriate</p></label>
+                    <textarea id="report" name="report" maxlength="200" required>I think this comment is inappropriate because </textarea>
+                    <button data-close-modal>Post</button>
+                </form>
             </div>
         </div>
         <div id="overlay"></div>
     </main>
-    <footer>
-        <div class="my-name">
-            <p>Site by Qiyuan Chen</p>
-        </div>
-        <div class="pp">
-            <p>Privacy policy</p>
-        </div>
-        <div class="tos">
-            <p>Terms of service</p>
-        </div>
-        <div class="light-dark-toggle">
-            <p>Dark mode: off</p>
-        </div>
-    </footer>
+    <%- include("./partials/footer") %>
 </body>
 </html>
