@@ -7,6 +7,10 @@ const messageSchema = new mongoose.Schema({
     },
     reports: {
         type: String
+    },
+    isReported: {
+        type: Boolean,
+        required: true
     }
 }, { timestamps: true } );
 

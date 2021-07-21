@@ -28,7 +28,7 @@ if (form !== null) {
         try {
             const res = await fetch("/", {
                 method: "POST",
-                body: JSON.stringify({ thoughts }),
+                body: JSON.stringify({ thoughts, isReported: false }),
                 headers: { "Content-Type": "application/json" }
             });
             const data = await res.text();
@@ -47,19 +47,23 @@ const readButtonEls = document.querySelectorAll(".read");
 const otherThoughtsEl = document.querySelector(".other-thought");
 readButtonEls.forEach(readButtonEl => {
     readButtonEl.addEventListener("click", async () => {
-        const response = await fetch("/message");
-        const data = await response.json();
-        otherThoughtsEl.innerHTML = "";
-        sessionStorage.setItem("id", data._id);
-        data.thoughts.forEach(paragraph => {
-            if (paragraph === "") {
-                otherThoughtsEl.append(document.createElement("br"));
-            } else {
-                const paragraphEl = document.createElement("p");
-                paragraphEl.textContent = paragraph;
-                otherThoughtsEl.append(paragraphEl);
-            }
-        });
+        try {
+            const response = await fetch("/message");
+            const data = await response.json();
+            otherThoughtsEl.innerHTML = "";
+            sessionStorage.setItem("id", data._id);
+            data.thoughts.forEach(paragraph => {
+                if (paragraph === "") {
+                    otherThoughtsEl.append(document.createElement("br"));
+                } else {
+                    const paragraphEl = document.createElement("p");
+                    paragraphEl.textContent = paragraph;
+                    otherThoughtsEl.append(paragraphEl);
+                }
+            });
+        } catch (err) {
+            console.log(err);
+        } 
     
         for (const contentEl of contentEls){
             if (contentEl.getAttribute("data-content") === "read"){

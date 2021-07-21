@@ -7,6 +7,8 @@ if (process.env.NODE_ENV !== "production"){
     dotenv.config();
 }
 
+console.log("server running");
+
 const app = express();
 app.listen(process.env.PORT || 3000);
 app.set("view engine", "ejs");
@@ -14,6 +16,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+.then(() => console.log("database connected"))
 .catch(err => console.log(err));
 
 app.get("/", (req, res) => {
@@ -32,7 +35,7 @@ app.post("/", async (req, res) => {
 
 app.post("/report", async (req, res) => {
     try {
-        await Message.findByIdAndUpdate(req.body.id, { reports: req.body.report });
+        await Message.findByIdAndUpdate(req.body.id, { reports: req.body.report, isReported: true });
     } catch (err) {
         console.log(err);
     }
