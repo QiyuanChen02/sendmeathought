@@ -24,20 +24,27 @@ const writeEl = document.querySelector("[data-content='write']");
 if (form !== null) {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        const lastSubmitTime = localStorage.getItem("lastSubmitTime") || 0;
         const thoughts = form.thought.value.split("\n");
-        try {
-            const res = await fetch("/", {
-                method: "POST",
-                body: JSON.stringify({ thoughts, isReported: false }),
-                headers: { "Content-Type": "application/json" }
-            });
-            const data = await res.text();
-            submittedEl.firstElementChild.textContent = data;
-            submittedEl.classList.remove("hidden");
-            writeEl.classList.add("hidden");
-            form.querySelector("textarea").value = "";
-        } catch (err) {
-            console.log(err);
+        const timePassed = Date.now() - lastSubmitTime;
+        if (timePassed >= 30000) {
+            localStorage.setItem("lastSubmitTime", Date.now());
+            try {
+                const res = await fetch("/", {
+                    method: "POST",
+                    body: JSON.stringify({ thoughts, isReported: false }),
+                    headers: { "Content-Type": "application/json" }
+                });
+                const data = await res.text();
+                submittedEl.firstElementChild.textContent = data;
+                submittedEl.classList.remove("hidden");
+                writeEl.classList.add("hidden");
+                form.querySelector("textarea").value = "";
+            } catch (err) {
+                console.log(err);
+            }
+        } else {
+            alert(`Please wait ${Math.ceil((30000 - timePassed) / 1000)}s before submitting again. This is to prevent spam.`);
         }
     });
 }
