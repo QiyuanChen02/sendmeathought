@@ -50,6 +50,17 @@ app.get("/message", async (req, res) => {
     }
 });
 
+//Used by me to track messages
+app.get("/all-messages", async (req, res) => {
+    try {
+        const allMessages = await Message.find({}).sort( { updatedAt: -1 } );
+        const allMessagesShort = allMessages.map(message => [message.thoughts.join("\n"), message.isReported]);
+        res.json(allMessagesShort);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 app.get("/tos", (req, res) => {
     res.render("tos");
 });
