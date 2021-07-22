@@ -37,7 +37,7 @@ body.dark {
     --backgroundColor: hsl(0, 0%, 7%);
     --textColour: hsl(0, 0%, 90%);
     --mainColour: hsl(0, 0%, 15%);
-    --buttonColour: hsl(300, 50%, 50%);
+    --buttonColour: hsl(300, 50%, 40%);
     --textFieldColour: hsl(0, 0%, 25%);
     --footerTextColour: hsl(0, 0%, 7%);
     --hoverColour: hsl(0, 0%, 40%);
