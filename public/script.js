@@ -20,14 +20,16 @@ for (const buttonEl of buttonEls){
 //This code changes the look of the screen when an input is submitted
 const form = document.querySelector(".main-content form");
 const submittedEl = document.querySelector("[data-content='has-written']");
+const submitErrorTextEl = document.querySelector(".submitThought p");
 const writeEl = document.querySelector("[data-content='write']");
 if (form !== null) {
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        submitErrorTextEl.textContent = "";
         const lastSubmitTime = localStorage.getItem("lastSubmitTime") || 0;
         const thoughts = form.thought.value.split("\n");
         const timePassed = Date.now() - lastSubmitTime;
-        if (timePassed >= 30000) {
+        if (timePassed >= 20000) {
             localStorage.setItem("lastSubmitTime", Date.now());
             try {
                 const res = await fetch("/", {
@@ -44,7 +46,7 @@ if (form !== null) {
                 console.log(err);
             }
         } else {
-            alert(`Please wait ${Math.ceil((30000 - timePassed) / 1000)}s before submitting again. This is to prevent spam.`);
+            submitErrorTextEl.textContent = `Please wait ${Math.ceil((20000 - timePassed) / 1000)}s before submitting again. This is to prevent spam.`;
         }
     });
 }

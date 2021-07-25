@@ -37,7 +37,7 @@ body.dark {
     --backgroundColor: hsl(0, 0%, 7%);
     --textColour: hsl(0, 0%, 90%);
     --mainColour: hsl(0, 0%, 15%);
-    --buttonColour: hsl(300, 50%, 40%);
+    --buttonColour: hsl(271, 50%, 40%);
     --textFieldColour: hsl(0, 0%, 25%);
     --footerTextColour: hsl(0, 0%, 7%);
     --hoverColour: hsl(0, 0%, 40%);
@@ -46,6 +46,7 @@ body.dark {
 
 header, main {
     width: min(95vw, 750px);
+    padding-left: calc(100vw - 100%);
 }
 
 h1, h2, p, button, textarea {
@@ -111,6 +112,15 @@ textarea {
     resize: none;
     margin: auto;
     background-color: var(--textFieldColour);
+}
+
+.submitThought {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submitThought p{
+    margin-top: 15px;
 }
 
 form button, .main-content button, .modal-body button {
