@@ -12,7 +12,7 @@
     text-decoration: none;
     font-family: Indie Flower, cursive; 
     font-weight: bold;
-    transition: width 1s, height 1s;
+    transition: width 1s, height 1s, color 1s, background-color 1s;
 }
 
 body {
@@ -126,7 +126,7 @@ textarea {
 form button, .main-content button, .modal-body button {
     float: right;
     margin-top: 15px;
-    margin-left: 15px;
+    margin-left: calc(5px + 1%);
     height: 30px;
     cursor: pointer;
     border: none;
