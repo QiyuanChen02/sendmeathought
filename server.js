@@ -2,6 +2,11 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import Message from "./messageModel.js";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 if (process.env.NODE_ENV !== "production"){
     dotenv.config();
@@ -10,9 +15,9 @@ if (process.env.NODE_ENV !== "production"){
 console.log("server running");
 
 const app = express();
-app.listen(process.env.PORT || 3000);
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.set("views", join(__dirname, "views"));
+app.use(express.static(join(__dirname, "public")));
 app.use(express.json());
 
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -72,3 +77,13 @@ app.get("/pp", (req, res) => {
 app.use((req, res) => {
     res.status(404).render("404");
 });
+
+// Only start server locally, not on Vercel
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+export default app;
